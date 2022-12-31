@@ -1,6 +1,6 @@
 services:
   phpmyadmin:
-    image: phpmyadmin:fpm
+    image: phpmyadmin:apache
     ports:
       - 80:80
     environment:
