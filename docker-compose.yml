@@ -1,0 +1,7 @@
+services:
+  phpmyadmin:
+    image: phpmyadmin:fpm
+    ports:
+      - 80:80
+    environment:
+      - PMA_ARBITRARY=1
