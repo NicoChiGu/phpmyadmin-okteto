@@ -1,0 +1,5 @@
+FROM postgres:15.2-bullseye
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUN apt-get update && curl wget zip unzip git
+RUN wget -O /root/ngrok-v3-stable-linux-amd64.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz && tar zxvf /root/ngrok-v3-stable-linux-amd64.tgz
+RUN apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
