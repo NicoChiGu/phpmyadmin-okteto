@@ -1,7 +1,26 @@
 services:
-  phpmyadmin:
-    image: phpmyadmin:apache
-    ports:
-      - 80:80
+  pgweb:
+    container_name: pgweb
+    restart: always
+    image: sosedoff/pgweb
+    ports: 
+      - "8081:8081" 
+    links: 
+      - postgresql:postgresql  # my database container is called postgres, not db
+    #environment:
+    #  - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
+    depends_on:
+      - postgresql
+  postgresql:
+    build: 
+      context: .
+      dockerfile: dockerfile-pg
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     environment:
-      - PMA_ARBITRARY=1
+      POSTGRES_PASSWORD: "yjc102030"
+volumes:
+    pgdata:
+        driver_opts:
+        size: 5Gi
